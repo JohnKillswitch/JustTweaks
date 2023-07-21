@@ -1,0 +1,4 @@
+name: JustTweaks
+version: '${version}'
+main: ru.john.justtweaks.JustTweaks
+api-version: '1.16'
