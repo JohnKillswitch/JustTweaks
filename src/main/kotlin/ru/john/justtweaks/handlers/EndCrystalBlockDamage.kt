@@ -15,5 +15,6 @@ class EndCrystalBlockDamage (
     fun onEntityExplode(event: EntityExplodeEvent) {
         if (event.entityType != EntityType.ENDER_CRYSTAL) return
         event.blockList().clear()
+
     }
 }

@@ -12,6 +12,7 @@ import org.bukkit.event.Listener
 import org.bukkit.event.entity.ProjectileHitEvent
 import ru.john.justtweaks.configs.Configuration
 import ru.john.justtweaks.configs.MainConf
+import ru.john.justtweaks.util.CPCheck
 import ru.john.justtweaks.util.WGCheck
 import java.util.*
 
@@ -42,10 +43,19 @@ class ArrowFired (private val mainConf: Configuration<MainConf> ) : Listener {
 
         firedBlock.type = Material.FIRE
 
+        if (firedBlock.type != Material.FIRE) return
+
         val data = firedBlock.blockData as Fire
         if (blockFace!!.oppositeFace == BlockFace.DOWN) return
         data.setFace(blockFace.oppositeFace, true)
         firedBlock.blockData = data
+        val entityName = when (entity.shooter) {
+            is Player -> (entity.shooter as Player).name
+            is LivingEntity -> "#${(entity.shooter as LivingEntity).name}"
+            else -> null
+        }
+
+        CPCheck().getCP()?.logPlacement(entityName, firedBlock.location, firedBlock.type, null)
     }
 
 }

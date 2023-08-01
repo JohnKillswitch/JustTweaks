@@ -21,7 +21,6 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(20)
             @ConfKey("igniteChance")
             Integer igniteChance();
-
         }
         @ConfComments("After entity shoot on burnable block that block can be igniting")
         @ConfKey("ArrowFire")
@@ -43,7 +42,6 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(1)
             @ConfKey("damage")
             Integer damage();
-
         }
         @ConfComments("Stonecutter now can damage if you step on it")
         @ConfKey("StoneCutterDamage")
@@ -60,8 +58,6 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(35)
             @ConfKey("changeChance")
             Integer changeChance();
-
-
         }
         @ConfComments("Change block under player to create a 'Path'")
         @ConfKey("CreatePath")
@@ -85,8 +81,6 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(1)
             @ConfKey("itemCount")
             Integer itemCount();
-
-
         }
         @ConfComments("Repair anvil with certain item by right click")
         @ConfKey("AnvilRepair")
@@ -103,7 +97,6 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(15)
             @ConfKey("scaryRadius")
             Integer scaryRadius();
-
         }
         @ConfComments("Animals will scary if you punch animal")
         @ConfKey("AnimalsScary")
@@ -115,12 +108,27 @@ public interface MainConf {
             @ConfDefault.DefaultBoolean(true)
             @ConfKey("enabled")
             Boolean enabled();
-
         }
         @ConfComments("Disable or enable ender crystal block damage")
-        @ConfKey("EndCrystalBlockDamag")
+        @ConfKey("EndCrystalBlockDamage")
         @SubSection
         EndCrystalBlockDamage endCrystalBlockDamage();
+
+        interface PiercingForShield {
+            @AnnotationBasedSorter.Order(1)
+            @ConfDefault.DefaultBoolean(true)
+            @ConfKey("enabled")
+            Boolean enabled();
+
+            @ConfComments("Does shield of player being blocked or player just taking damage")
+            @ConfDefault.DefaultBoolean(true)
+            @ConfKey("shieldBlock")
+            Boolean shieldBlock();
+        }
+        @ConfComments("when player get hit from crossbow with piercing enchant shield got blocked")
+        @ConfKey("PiercingForShield")
+        @SubSection
+        PiercingForShield piercingForShield();
 
 
 //    interface OtherSettings {
