@@ -26,6 +26,9 @@ class ArrowFired (private val mainConf: Configuration<MainConf> ) : Listener {
         val blockFace = event.hitBlockFace
         val hitBlock = event.hitBlock ?: return
 
+        val blacklist = mainConf.data().tweaks().arrowFired().blacklist()
+        if (blacklist.any { it.equals(entity.world.name, ignoreCase = true) }) return
+
 
         if (entity.shooter !is LivingEntity && !tweakData.otherSourceTrigger()) return
         if (entity.type != EntityType.ARROW || entity.fireTicks <0) return

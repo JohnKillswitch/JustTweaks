@@ -16,7 +16,7 @@ import java.util.*
 
 
 class PiercingForShield(
-    private val conf: Configuration<MainConf>,
+    private val mainConf: Configuration<MainConf>,
     private val shooterMap: WeakHashMap<UUID, SavedArrow>,
 ) : Listener {
 
@@ -35,6 +35,10 @@ class PiercingForShield(
         if ((event.bow?.getEnchantmentLevel(Enchantment.PIERCING) ?: 0) == 0) return
 
         val arrow = event.projectile as Arrow
+
+        val blacklist = mainConf.data().tweaks().piercingForShield().blacklist()
+        if (blacklist.any { it.equals(arrow.world.name, ignoreCase = true) }) return
+
         this.shooterMap[event.projectile.uniqueId] = SavedArrow(arrow.damage, arrow.pierceLevel, arrow.velocity)
 
     }
@@ -50,7 +54,7 @@ class PiercingForShield(
         when {
             player.inventory.itemInMainHand.type == Material.SHIELD || player.inventory.itemInOffHand.type == Material.SHIELD -> {
                 player.playEffect(EntityEffect.SHIELD_BREAK)
-                if (conf.data().tweaks().piercingForShield().shieldBlock()) player.setCooldown(Material.SHIELD, (arrow.enchantLevel + 1) * 20)
+                if (mainConf.data().tweaks().piercingForShield().shieldBlock()) player.setCooldown(Material.SHIELD, (arrow.enchantLevel + 1) * 20)
                 player.clearActiveItem()
             }
             else -> return

@@ -20,6 +20,9 @@ class CreatePath (
         val fromBlock = event.from.block
         val downBlock = fromBlock.getRelative(BlockFace.DOWN)
 
+        val blacklist = mainConf.data().tweaks().createPath().blacklist()
+        if (blacklist.any { it.equals(fromBlock.world.name, ignoreCase = true) }) return
+
         if (downBlock.type != Material.GRASS_BLOCK &&
             downBlock.type != Material.DIRT
         ) return

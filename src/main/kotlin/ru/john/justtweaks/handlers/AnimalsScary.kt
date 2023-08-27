@@ -21,6 +21,9 @@ class AnimalsScary (
         if (damager !is Player) return
         if (event.entity !is Animals) return
 
+        val blacklist = mainConf.data().tweaks().animalsScary().blacklist()
+        if (blacklist.any { it.equals(damager.world.name, ignoreCase = true) }) return
+
         val radius = mainConf.data().tweaks().animalsScary().scaryRadius().toDouble()
 
         val entities = damager.getNearbyEntities(radius, radius, radius)

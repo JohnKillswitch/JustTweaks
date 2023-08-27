@@ -2,6 +2,9 @@ package ru.john.justtweaks.configs;
 
 import space.arim.dazzleconf.annote.*;
 import space.arim.dazzleconf.sorter.AnnotationBasedSorter;
+
+import java.util.List;
+
 @ConfHeader({"Main configuration file."})
 public interface MainConf {
 
@@ -21,6 +24,11 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(20)
             @ConfKey("igniteChance")
             Integer igniteChance();
+
+            @ConfComments("blacklisted worlds")
+            @ConfDefault.DefaultStrings( {"WORLD_NETHER"} )
+            @ConfKey("blackList")
+            List<String> blacklist();
         }
         @ConfComments("After entity shoot on burnable block that block can be igniting")
         @ConfKey("ArrowFire")
@@ -42,6 +50,11 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(1)
             @ConfKey("damage")
             Integer damage();
+
+            @ConfComments("blacklisted worlds")
+            @ConfDefault.DefaultStrings( {"WORLD_NETHER"} )
+            @ConfKey("blackList")
+            List<String> blacklist();
         }
         @ConfComments("Stonecutter now can damage if you step on it")
         @ConfKey("StoneCutterDamage")
@@ -58,6 +71,11 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(35)
             @ConfKey("changeChance")
             Integer changeChance();
+
+            @ConfComments("blacklisted worlds")
+            @ConfDefault.DefaultStrings( {"WORLD_NETHER"} )
+            @ConfKey("blackList")
+            List<String> blacklist();
         }
         @ConfComments("Change block under player to create a 'Path'")
         @ConfKey("CreatePath")
@@ -81,6 +99,11 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(1)
             @ConfKey("itemCount")
             Integer itemCount();
+
+            @ConfComments("blacklisted worlds")
+            @ConfDefault.DefaultStrings( {"WORLD_NETHER"} )
+            @ConfKey("blackList")
+            List<String> blacklist();
         }
         @ConfComments("Repair anvil with certain item by right click")
         @ConfKey("AnvilRepair")
@@ -97,6 +120,11 @@ public interface MainConf {
             @ConfDefault.DefaultInteger(15)
             @ConfKey("scaryRadius")
             Integer scaryRadius();
+
+            @ConfComments("blacklisted worlds")
+            @ConfDefault.DefaultStrings( {"WORLD_NETHER"} )
+            @ConfKey("blackList")
+            List<String> blacklist();
         }
         @ConfComments("Animals will scary if you punch animal")
         @ConfKey("AnimalsScary")
@@ -108,6 +136,11 @@ public interface MainConf {
             @ConfDefault.DefaultBoolean(true)
             @ConfKey("enabled")
             Boolean enabled();
+
+            @ConfComments("blacklisted worlds")
+            @ConfDefault.DefaultStrings( {"WORLD_NETHER"} )
+            @ConfKey("blackList")
+            List<String> blacklist();
         }
         @ConfComments("Disable or enable ender crystal block damage")
         @ConfKey("EndCrystalBlockDamage")
@@ -124,6 +157,11 @@ public interface MainConf {
             @ConfDefault.DefaultBoolean(true)
             @ConfKey("shieldBlock")
             Boolean shieldBlock();
+
+            @ConfComments("blacklisted worlds")
+            @ConfDefault.DefaultStrings( {"WORLD_NETHER"} )
+            @ConfKey("blackList")
+            List<String> blacklist();
         }
         @ConfComments("when player get hit from crossbow with piercing enchant shield got blocked")
         @ConfKey("PiercingForShield")

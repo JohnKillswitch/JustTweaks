@@ -34,11 +34,14 @@ class AnvilRepair (
         val player = event.player
         val mainHand = player.inventory.itemInMainHand
 
+        val blacklist = mainConf.data().tweaks().anvilRepair().blacklist()
+        if (blacklist.any { it.equals(block.world.name, ignoreCase = true) }) return
+
 
         if (type != Material.CHIPPED_ANVIL &&
             type != Material.DAMAGED_ANVIL) return
         if (Material.getMaterial(itemData .itemMaterial()) != mainHand.type &&
-            mainHand.amount != itemData .itemCount()) return
+            mainHand.amount != itemData.itemCount()) return
 
         val face = (block.blockData as Directional).facing
 

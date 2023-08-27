@@ -18,6 +18,10 @@ class StoneCutterDamagePlayers (
     @EventHandler
     fun checkEvent (event: PlayerMoveEvent) {
         if (event.to.block.type != Material.STONECUTTER) return
+
+        val blacklist = mainConf.data().tweaks().animalsScary().blacklist()
+        if (blacklist.any { it.equals(event.to.block.world.name, ignoreCase = true) }) return
+
         if ((cooldownMap[event.player.uniqueId]?.minus(System.currentTimeMillis()) ?: -1000) > -499) return
 
         cooldownMap[event.player.uniqueId] = System.currentTimeMillis()

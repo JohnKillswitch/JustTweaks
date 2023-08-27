@@ -14,6 +14,10 @@ class EndCrystalBlockDamage (
     @EventHandler
     fun onEntityExplode(event: EntityExplodeEvent) {
         if (event.entityType != EntityType.ENDER_CRYSTAL) return
+
+        val blacklist = mainConf.data().tweaks().endCrystalBlockDamage().blacklist()
+        if (blacklist.any { it.equals(event.entity.world.name, ignoreCase = true) }) return
+
         event.blockList().clear()
 
     }
